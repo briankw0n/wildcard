@@ -7,6 +7,7 @@ body {
   justify-content: center;
   height: 100vh;
   margin: 0;
+  padding: 1rem;
 }
 
 .container {
@@ -85,4 +86,17 @@ button#new-question {
 
 button#new-question:hover {
   background-color: #bdbdbd;
+}
+
+@media (max-width: 480px) {
+  body {
+    height: auto;
+    overflow-y: auto;
+    align-items: flex-start;
+    padding: 2rem 1rem 10rem 1rem;
+  }
+
+  .card {
+    margin-top: 10rem;
+  }
 }
