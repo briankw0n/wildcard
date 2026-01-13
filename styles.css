@@ -1,65 +1,102 @@
-* { box-sizing: border-box; }
-
 body {
-  font-family: system-ui;
-  padding: 16px;
-  max-width: 420px;
-  margin: auto;
-  overflow-x: hidden;  /* prevent horizontal scroll */
-}
-
-/* Smaller inputs and request button */
-#date, #time, #requestBtn {
-  padding: 8px;
-  font-size: 14px;
-  width: 100%;
-  margin-top: 6px;
-  box-sizing: border-box;
-}
-
-/* Appointment card */
-.card {
-  position: relative; /* needed for absolute X */
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 16px;
-  margin-top: 20px;
-  word-wrap: break-word;
-  width: 100%;      /* always fits parent container */
-  box-sizing: border-box;
-  overflow: hidden;  /* prevent inner overflow */
-}
-
-.pending { background: #fff3cd; }
-.accepted { background: #d1e7dd; }
-.rejected { background: #f8d7da; }
-
-/* Accept/Reject buttons container */
-.button-group {
+  font-family: Arial, sans-serif;
+  background-color: #2f2f2f;
+  color: #ffffff;
   display: flex;
-  flex-wrap: wrap;   /* wrap buttons if not enough space */
-  gap: 4px;
-  margin-top: 12px;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  padding: 1rem;
 }
 
-.button-group button {
-  flex: 1 1 45%;     /* each button ~half width, shrink if needed */
-  min-width: 0;      /* prevent overflow */
-  box-sizing: border-box;
+.container {
+  text-align: center;
 }
 
-/* Plain black X in the top-right corner inside the card */
-.delete-x {
-  position: absolute;
-  top: 4px;
-  right: 4px;
+.card {
+  width: 320px;
+  height: 220px;
+  perspective: 1000px;
+  margin-bottom: 20px;
   cursor: pointer;
-  font-weight: bold;
-  font-size: 18px;
-  color: #000;
+  user-select: none;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+  border-radius: 16px;
+  background-color: #1e1e1e;
+}
+
+.card.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  padding: 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid #333;
+}
+
+.card-front {
+  background: #222;
+}
+
+.card-back {
+  background: #2a2a2a;
+  transform: rotateY(180deg);
+}
+
+h2 {
+  margin: 0 0 12px 0;
+  font-weight: 700;
+}
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.4;
+  color: #ddd;
+}
+
+button#new-question {
+  padding: 10px 24px;
+  font-size: 1rem;
   border: none;
-  background: none;
-  padding: 0;
-  line-height: 1;
-  z-index: 10;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #121212;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button#new-question:hover {
+  background-color: #bdbdbd;
+}
+
+@media (max-width: 480px) {
+  body {
+    height: auto;
+    overflow-y: auto;
+    align-items: flex-start;
+    padding: 2rem 1rem 10rem 1rem;
+  }
+
+  .card {
+    margin-top: 10rem;
+  }
 }
